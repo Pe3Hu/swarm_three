@@ -103,6 +103,7 @@ class board{
 
     window.addEventListener( 'resize', this.onWindowResize() );
 
+    this.data.clock = new THREE.Clock( true );
     this.init_geometrys();
     this.init_objects();
   }
@@ -302,5 +303,14 @@ class board{
 
     for( let drone of this.array.drone )
       drone.update();
+
+    if( Math.round( this.data.clock.getElapsedTime().toFixed(2) * 100 ) % 100 == 0 ){
+
+      for( let i = 0; i < this.array.drone.length; i++ )
+        this.array.drone[i].scream( i + 1, this.array.drone );
+      for( let i = 0; i < this.array.drone.length; i++ )
+        this.array.drone[i].listen();
+    }
+
   }
 }

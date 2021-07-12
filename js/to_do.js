@@ -26,12 +26,14 @@ class to_do {
   init(){
     this.data.distance_to = {};
 
-    /*for( to_whom in this.data.to_whoms )
+    for( let to_whom in this.data.to_whoms )
       this.data.distance_to[to_whom] = {};
 
-    for( to_whom in this.array.to_whom )
-      for( which_one in this.data.which_one[to_whom] )
-        this.data.distance_to[to_whom][which_ones] = MAX_DIST;*/
+    for( let to_whom in this.array.to_whom )
+      for( let which_one in this.data.which_one[to_whom] )
+        this.data.distance_to[to_whom][which_one] = MAX_DIST;
+
+    this.get_task();
 
     /*this.data.hit_flag = {};
     for( to_whom in this.array.to_whom ):
@@ -43,8 +45,8 @@ class to_do {
   }
 
   get_task(){
-    this.data.destination['to_whom'] = this.data.to_whoms[this.var.curent.task];
-    this.data.destination['which_one'] = this.data.which_one[this.data.destination['to_whom']][this.var.curent.task];
+    this.data.destination['to_whom'] = this.array.to_whom[this.var.task];
+    this.data.destination['which_one'] = this.data.which_one[this.data.destination['to_whom']][this.var.task];
   }
 
   next_step(){
@@ -67,6 +69,5 @@ class to_do {
   }
 
   check_distance_to(){
-
   }
 }

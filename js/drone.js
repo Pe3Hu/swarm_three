@@ -74,6 +74,7 @@ class hive {
         this.set_vel( vel );
         this.add_pos( this.var.vel );
         this.colorize( this.var.last_repel )
+        this.data.to_do.next_step();
       }
     }
 
@@ -312,7 +313,35 @@ class drone extends hive {
     colors[this.const.index + 2] = color.b;
   }
 
-  scream(){
-    //for( let )
+  scream( index, array ){
+    for( let i = index; i < array.length; i++ ){
+      //let neighbour = array[i];
+      let d = array[i].var.pos.distanceTo( this.var.pos );
+
+      if( d < array[i].const.radius.scream )
+        this.array.echo.push( array[i] );
+      if( d < this.const.radius.scream )
+        array[i].array.echo.push( this );
+    }
+  }
+
+  listen(){
+    let mins = {};
+    let to_do = this.data.to_do;
+
+    for( let to_whom in to_do.array.to_whom ){
+      mins[to_whom] = {};
+
+      for( let which_one in to_do.data.which_one[to_whom] )
+        mins[to_whom][which_one] = to_do.data.distance_to[to_whom][which_ones];
+    }
+
+    for( let echo in this.array.echo ){
+      //console.log(echo)
+      /*for( let to_whom in echo.data.to_do.data.distance_to )
+        for( let which_one in echo.data.to_do.data.distance_to[to_whom] )
+          console.log( which_one )*/
+
+    }
   }
 }
